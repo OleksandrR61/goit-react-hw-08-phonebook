@@ -19,7 +19,7 @@ export const ContacList = () => {
     const error = useSelector(selectError);
     const isUpdated = useSelector(selectIsUpdated);
     const filter = useSelector(selectFilter);
-
+    
     const dispatch = useDispatch();
 
     const contactsForRender = filter

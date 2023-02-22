@@ -3,22 +3,22 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { instance, tokenSet, tokenUnset } from 'services/axios';
 
-export const register = createAsyncThunk('auth/register', async user => {
-    try { console.log(user);
+export const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
+    try { 
         const { data } = await instance.post('/users/signup', user);
 
         Notify.success(`User ${user.name} has been successfully registered.`);
-        console.log(data);
-
+        
         tokenSet(data.token);
 
         return data;
     } catch (error) {
         Notify.failure("Sorry, the server is temporarily unavailable.");
+        return thunkAPI.rejectWithValue(error.message);
     };
 });
 
-export const logIn = createAsyncThunk('auth/login', async user => {
+export const logIn = createAsyncThunk('auth/login', async (user, thunkAPI) => {
     try {
         const { data } = await instance.post('/users/login', user);
 
@@ -29,10 +29,11 @@ export const logIn = createAsyncThunk('auth/login', async user => {
         return data;
     } catch (error) {
         Notify.failure("Sorry, the server is temporarily unavailable.");
+        return thunkAPI.rejectWithValue(error.message);
     };
 });
 
-export const logOut = createAsyncThunk('auth/logout', async () => {
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     try {
         await instance.post('/users/logout');
 
@@ -41,6 +42,7 @@ export const logOut = createAsyncThunk('auth/logout', async () => {
         tokenUnset();
     } catch (error) {
         Notify.failure("Sorry, the server is temporarily unavailable.");
+        return thunkAPI.rejectWithValue(error.message);
     };
 });
 

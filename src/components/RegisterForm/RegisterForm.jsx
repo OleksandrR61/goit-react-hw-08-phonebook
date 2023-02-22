@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { register } from 'redux/auth/authOperation';
+import { updateContacts } from 'redux/contacts/contactsSlice';
 
 import styles from "./RegisterForm.module.css";
 
@@ -29,6 +30,7 @@ export const RegisterForm = () => {
         event.preventDefault();
 
         dispatch(register({name, email, password}));
+        dispatch(updateContacts());
 
         setName("");
         setEmail("");

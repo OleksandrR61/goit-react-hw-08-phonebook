@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { logIn } from 'redux/auth/authOperation';
+import { updateContacts } from 'redux/contacts/contactsSlice';
 
 import styles from "./LoginForm.module.css";
 
@@ -26,6 +27,7 @@ export const LoginForm = () => {
         event.preventDefault();
 
         dispatch(logIn({email, password}));
+        dispatch(updateContacts());
 
         setEmail("");
         setPassword("");
