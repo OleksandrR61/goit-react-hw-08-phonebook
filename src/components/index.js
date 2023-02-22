@@ -10,6 +10,7 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContacList } from './ContacList/ContacList';
 import { ContactElement } from './ContactElement/ContactElement';
+import { Loader } from './Loader/Loader';
 
 export { Layout, NavBar, Navigation, AuthNav, UserMenu, RegisterForm, LoginForm, Phonebook, ContactForm, Filter,
-    ContacList, ContactElement };
+    ContacList, ContactElement, Loader };

@@ -1,10 +1,11 @@
 import { Suspense, lazy, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
-import { Layout } from 'components';
+import { Layout, Loader } from 'components';
 import { getCurrentUser } from 'redux/auth/authOperation';
 import { PrivateRoute, PublicRoute } from 'routes';
+import { selectIsAuthLoading } from 'redux/auth/authSelectors';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
@@ -13,10 +14,15 @@ const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isAuthLoading = useSelector(selectIsAuthLoading);
 
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
+
+  if (isAuthLoading){
+    return <Loader />
+  }
 
   return (
     <>
