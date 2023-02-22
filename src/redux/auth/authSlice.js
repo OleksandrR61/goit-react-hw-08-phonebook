@@ -6,6 +6,7 @@ const initialState = {
     userName: "",
     token: null,
     isLoggedIn: false,
+    isAuthLoading: true,
 };
 
 const handleLogFullfilled = (state, { payload }) => {
@@ -26,9 +27,16 @@ const authSlice = createSlice({
                 state.token = null;
                 state.isLoggedIn = false;
             })
+            .addCase(getCurrentUser.pending, (state, {payload}) => {
+                state.isAuthLoading = true;
+            })
             .addCase(getCurrentUser.fulfilled, (state, {payload}) => {
                 state.userName = payload.name;
                 state.isLoggedIn = true;
+                state.isAuthLoading = false;
+            })
+            .addCase(getCurrentUser.rejected, (state, {payload}) => {
+                state.isAuthLoading = false;
             })
             .addDefaultCase((state) => state);
     },

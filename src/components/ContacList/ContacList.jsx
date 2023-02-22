@@ -36,12 +36,6 @@ export const ContacList = () => {
         };
     }, [dispatch, isUpdated, contacts.length, contactsForRender.length, isLoading]);
 
-    // if (contacts.length === 0 && !isLoading) {
-    //     Notify.info("Add your first contact please.");
-    // } else if (contactsForRender.length === 0 && !isLoading) {
-    //     Notify.info("No contacts found for your request.");
-    // };
-
     return (
         <>
             {

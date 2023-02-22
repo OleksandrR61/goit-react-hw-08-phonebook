@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Layout } from 'components';
 import { getCurrentUser } from 'redux/auth/authOperation';
+import { PrivateRoute, PublicRoute } from 'routes';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
@@ -18,16 +19,28 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <Layout>
-      <Suspense fallback={null}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path='*' element={<HomePage />}/>
-        </Routes>
-      </Suspense>
-    </Layout>
+    <>
+      <Layout>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              
+              <Route path="/contacts" element={
+                <PrivateRoute component={<ContactsPage />} />
+              } />
+              
+              <Route path="/register" element={
+                <PublicRoute component={<RegisterPage />} />
+              } />
+              
+              <Route path="/login" element={
+                <PublicRoute component={<LoginPage />} />
+              } />
+              
+              <Route path='*' element={<HomePage />}/>
+            </Routes>
+          </Suspense>
+      </Layout>
+    </>
   );
 };
