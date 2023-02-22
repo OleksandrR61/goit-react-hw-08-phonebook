@@ -27,7 +27,7 @@ const authSlice = createSlice({
                 state.token = null;
                 state.isLoggedIn = false;
             })
-            .addCase(getCurrentUser.pending, (state, {payload}) => {
+            .addCase(getCurrentUser.pending, (state) => {
                 state.isAuthLoading = true;
             })
             .addCase(getCurrentUser.fulfilled, (state, {payload}) => {
@@ -35,7 +35,7 @@ const authSlice = createSlice({
                 state.isLoggedIn = true;
                 state.isAuthLoading = false;
             })
-            .addCase(getCurrentUser.rejected, (state, {payload}) => {
+            .addCase(getCurrentUser.rejected, (state) => {
                 state.isAuthLoading = false;
             })
             .addDefaultCase((state) => state);

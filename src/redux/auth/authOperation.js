@@ -58,5 +58,6 @@ export const getCurrentUser = createAsyncThunk('auth/current', async (_, thunkAP
         return data;
     } catch (error) {
         Notify.failure("Sorry, the server is temporarily unavailable.");
+        return thunkAPI.rejectWithValue();
     }
 })
