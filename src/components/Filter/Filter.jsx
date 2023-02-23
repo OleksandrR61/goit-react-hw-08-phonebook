@@ -19,7 +19,7 @@ export const Filter = () => {
 
     return (
         <div style={{display: 'flex', alignItems: 'baseline', marginBottom: '16px'}}>
-            <label>
+            <label style={{marginRight: '8px'}}>
                 Filter
 
                 <input type="text" className="input" value={filter} onChange={handleChange}/>
