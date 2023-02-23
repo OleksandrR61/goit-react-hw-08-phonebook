@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 import { Layout, Loader } from 'components';
 import { getCurrentUser } from 'redux/auth/authOperation';
@@ -43,7 +43,7 @@ export const App = () => {
                 <PublicRoute component={<LoginPage />} />
               } />
               
-              <Route path='*' element={<HomePage />}/>
+              <Route path='*' element={<Navigate to="/" />}/>
             </Routes>
           </Suspense>
       </Layout>
