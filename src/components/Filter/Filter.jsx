@@ -18,13 +18,13 @@ export const Filter = () => {
     };
 
     return (
-        <>
+        <div style={{display: flex}}>
             <label style={{marginBottom: '16px'}}>
                 Filter
 
                 <input type="text" className="input" value={filter} onChange={handleChange}/>
             </label>
-            <button type='button' onClick={handleClick}>Clear</button>
-        </>
+            <button type='button' className='button' onClick={handleClick}>Clear</button>
+        </div>
     );
 };
