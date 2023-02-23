@@ -4,14 +4,17 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { RotatingLines } from  'react-loader-spinner'
 
 import { ContactElement } from "components";
-import { selectContacts, selectIsLoading, selectError, selectIsUpdated, selectFilter } from 'redux/contacts/selectors';
+import {
+    selectContacts,
+    selectIsLoading,
+    selectError,
+    selectIsUpdated,
+    selectFilter,
+    selectContactsFilter
+} from 'redux/contacts/selectors';
 import { fetchContacts } from 'redux/contacts/operations';
 
 import styles from './ContactList.module.css';
-
-const getContactsForRender = (contacts, filter) => {
-    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase().trim()));
-};
 
 export const ContacList = () => {
     const contacts = useSelector(selectContacts);
@@ -19,11 +22,12 @@ export const ContacList = () => {
     const error = useSelector(selectError);
     const isUpdated = useSelector(selectIsUpdated);
     const filter = useSelector(selectFilter);
+    const contactsFilter = useSelector(selectContactsFilter);
     
     const dispatch = useDispatch();
 
     const contactsForRender = filter
-        ? getContactsForRender(contacts, filter)
+        ? contactsFilter
         : contacts;
 
     useEffect(() => {
