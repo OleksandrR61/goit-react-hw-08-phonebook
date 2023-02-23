@@ -12,11 +12,19 @@ export const Filter = () => {
         dispatch(changeFilter(target.value));
     };
 
-    return (
-        <label style={{marginBottom: '16px'}}>
-            Filter
+    const handleClick = ({target}) => {
+        dispatch(changeFilter(""));
+        target.blur();
+    };
 
-            <input type="text" className="input" value={filter} onChange={handleChange}/>
-        </label>
+    return (
+        <>
+            <label style={{marginBottom: '16px'}}>
+                Filter
+
+                <input type="text" className="input" value={filter} onChange={handleChange}/>
+            </label>
+            <button type='button' onClick={handleClick}>Clear</button>
+        </>
     );
 };
