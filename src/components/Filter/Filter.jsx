@@ -18,8 +18,8 @@ export const Filter = () => {
     };
 
     return (
-        <div style={{display: 'flex'}}>
-            <label style={{marginBottom: '16px'}}>
+        <div style={{display: 'flex', marginBottom: '16px'}}>
+            <label>
                 Filter
 
                 <input type="text" className="input" value={filter} onChange={handleChange}/>
