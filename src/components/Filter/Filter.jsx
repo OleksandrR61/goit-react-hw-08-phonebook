@@ -18,7 +18,7 @@ export const Filter = () => {
     };
 
     return (
-        <div style={{display: 'flex', marginBottom: '16px'}}>
+        <div style={{display: 'flex', alignItems: 'baseline', marginBottom: '16px'}}>
             <label>
                 Filter
 
