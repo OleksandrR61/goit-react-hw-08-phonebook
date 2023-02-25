@@ -18,6 +18,13 @@ const handleLogFullfilled = (state, { payload }) => {
 const authSlice = createSlice({
     name: 'auth',
     initialState,
+    reducers: {
+        userReset(state) {
+            state.userName = "";
+            state.token = null;
+            state.isLoggedIn = false;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(register.fulfilled, handleLogFullfilled)
@@ -42,4 +49,5 @@ const authSlice = createSlice({
     },
 });
 
+export const { userReset } = authSlice.actions;
 export const authReducer = authSlice.reducer;

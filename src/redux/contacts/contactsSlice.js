@@ -25,6 +25,7 @@ const contactsSlice = createSlice({
         },
         cleanContacts(state) {
             state.items = [];
+            state.isLoading = true;
         },
     },
     extraReducers: (builder) => {

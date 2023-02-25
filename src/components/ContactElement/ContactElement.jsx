@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { deleteContact } from 'redux/contacts/operations';
 
@@ -10,7 +9,6 @@ export const ContactElement = ({contact}) => {
     const dispatch = useDispatch();
 
     const handleClick = () => {
-        Notify.success(`Contact ${contact.name} removed`);
         dispatch(deleteContact(contact.id));
     };
 
