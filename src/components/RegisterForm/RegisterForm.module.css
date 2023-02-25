@@ -16,8 +16,20 @@
 }
 
 .formInputs {
+    position: relative;
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
     width: 700px;
+}
+
+.img {
+    position: absolute;
+
+    right: -28px;
+    
+    border-color: transparent;
+    background-color: transparent;
+
+    cursor: pointer;
 }

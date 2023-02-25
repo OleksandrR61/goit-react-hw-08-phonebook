@@ -4,12 +4,16 @@ import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperation';
 import { updateContacts } from 'redux/contacts/contactsSlice';
 
+import EyeImg from 'svg/eye.svg';
+import EyeOffImg from 'svg/eye-off.svg';
+
 import styles from "./RegisterForm.module.css";
 
 export const RegisterForm = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isWatch, setIsWatch] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -24,6 +28,10 @@ export const RegisterForm = () => {
                 break;
             default: return;
         };
+    };
+
+    const handleClick = () => {
+        setIsWatch(prev => !prev);
     };
 
     const handleSubmit = (event) => {
@@ -75,7 +83,7 @@ export const RegisterForm = () => {
                     Password
 
                     <input
-                        type="password"
+                        type={isWatch ? "text" : "password"}
                         name="password"
                         required
                         className="input"
@@ -83,6 +91,13 @@ export const RegisterForm = () => {
                         onChange={handleChange}
                     />
                 </label>
+
+                <button
+                    type="button"
+                    onClick={handleClick}
+                    className={styles.img}>
+                        <img src={isWatch ? EyeImg : EyeOffImg} alt="watch password" />
+                </button>
             </div>
     
             <button

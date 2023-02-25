@@ -4,11 +4,15 @@ import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/authOperation';
 import { updateContacts } from 'redux/contacts/contactsSlice';
 
+import EyeImg from 'svg/eye.svg';
+import EyeOffImg from 'svg/eye-off.svg';
+
 import styles from "./LoginForm.module.css";
 
 export const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isWatch, setIsWatch] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -21,6 +25,10 @@ export const LoginForm = () => {
                 break;
             default: return;
         };
+    };
+
+    const handleClick = () => {
+        setIsWatch(prev => !prev);
     };
 
     const handleSubmit = (event) => {
@@ -56,7 +64,7 @@ export const LoginForm = () => {
                     Password
 
                     <input
-                        type="password"
+                        type={isWatch ? "text" : "password"}
                         name="password"
                         required
                         className="input"
@@ -64,6 +72,13 @@ export const LoginForm = () => {
                         onChange={handleChange}
                     />
                 </label>
+
+                <button
+                    type="button"
+                    onClick={handleClick}
+                    className={styles.img}>
+                        <img src={isWatch ? EyeImg : EyeOffImg} alt="watch password" />
+                </button>
             </div>
     
             <button type="submit" name="submit" className="button">Login</button>
