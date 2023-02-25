@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import PropTypes from 'prop-types';
+import { Navigate, Outlet } from "react-router-dom";
 
 import { selectIsLoggedIn, selectIsAuthLoading } from "redux/auth/authSelectors";
 
-export const PublicRoute = ({ component }) => {
+export const PublicRoute = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const isAuthLoading = useSelector(selectIsAuthLoading);
 
@@ -12,9 +11,5 @@ export const PublicRoute = ({ component }) => {
         return;
     };
     
-    return isLoggedIn ? <Navigate to="/contacts" replace={true}/> : component;
-};
-
-PublicRoute.propTypes = {
-    component: PropTypes.node.isRequired,
+    return isLoggedIn ? <Navigate to="/contacts" replace={true} /> : <Outlet />;
 };

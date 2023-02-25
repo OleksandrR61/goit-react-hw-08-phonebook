@@ -31,19 +31,16 @@ export const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               
-              <Route path="/contacts" element={
-                <PrivateRoute component={<ContactsPage />} />
-              } />
+              <Route path="" element={<PrivateRoute />}>
+                <Route path="/contacts" element={<ContactsPage />} />
+              </Route>
+
+              <Route path="" element={<PublicRoute />}>
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/login" element={<LoginPage />} />
+              </Route>
               
-              <Route path="/register" element={
-                <PublicRoute component={<RegisterPage />} />
-              } />
-              
-              <Route path="/login" element={
-                <PublicRoute component={<LoginPage />} />
-              } />
-              
-              <Route path='*' element={<Navigate to="/" />}/>
+              <Route path='*' element={<Navigate to="/" replace={true}/>}/>
             </Routes>
           </Suspense>
       </Layout>
