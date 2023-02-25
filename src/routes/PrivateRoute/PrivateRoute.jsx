@@ -12,7 +12,7 @@ export const PrivateRoute = ({ component }) => {
         return;
     };
     
-    return isLoggedIn ? component : <Navigate to="/login"/>;
+    return isLoggedIn ? component : <Navigate to="/login" replace={true}/>;
 };
 
 PrivateRoute.propTypes = {

@@ -12,8 +12,9 @@ export const UserMenu = () => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(logOut());
-    dispatch(cleanContacts());
+    dispatch(logOut()).then(() => {
+      dispatch(cleanContacts());
+    });
   };
 
   return (

@@ -12,7 +12,7 @@ export const PublicRoute = ({ component }) => {
         return;
     };
     
-    return isLoggedIn ? <Navigate to="/contacts"/> : component;
+    return isLoggedIn ? <Navigate to="/contacts" replace={true}/> : component;
 };
 
 PublicRoute.propTypes = {
