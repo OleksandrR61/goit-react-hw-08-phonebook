@@ -11,14 +11,14 @@
     width: 200px;
     height: 200px;
 
-    background-color: #bfffff;
+    background-color: #9edddd;
 
     border-radius: 8px;
 }
 
 .contactElement:hover {
     scale: 1.1;
-    box-shadow: 10px 5px 5px #9ddddd;
+    box-shadow: 10px 5px 5px #8dcccc;
 }
 
 .contactElementInfo {
